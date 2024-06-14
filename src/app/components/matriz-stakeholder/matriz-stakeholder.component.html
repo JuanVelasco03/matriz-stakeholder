@@ -1,0 +1,343 @@
+<div>
+  <div class="main-title-panel">
+      <h1>{{'Matriz.title1' | translate }}</h1>
+  </div>
+  <div class="main-title-panel">
+      <h3>{{'Matriz.subtitle' | translate }}</h3>
+  </div>
+  <div class="description">
+      <div><label> <p>{{'Matriz.descripcion' | translate }}</p></label></div>
+  </div>
+</div>
+
+<div id="totalMatrizData">
+  <div class="content-data-matriz">
+    <div class="container-table mb-4">
+      <table>
+        <tr>
+            <th>{{'Matriz.tabletTile1' | translate}}</th>
+            <th>{{'Matriz.tabletTile2' | translate}}</th>
+            <th>{{'Matriz.tabletTile3' | translate}}</th>
+            <th>{{'Matriz.tabletTile4' | translate}}</th>
+            <th>{{'Matriz.tabletTile5' | translate}}</th>
+            <th>{{'Matriz.tabletTile6' | translate}}</th>
+            <th>{{'Matriz.tabletTile7' | translate}}</th>
+            <th>{{'Matriz.tabletTile8' | translate}}</th>
+        </tr>
+        <tr class="info-user-box3">
+          <th colspan="8" class="TitleBox1">{{'Matriz.titleInterna' | translate}}</th>
+        </tr>
+        @for (form of internComunication; track $index) {
+          <tr [formGroup]="form" class="column-form">
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="public"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="caracters"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="influence"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="need"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="offer"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="languaje"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="messages"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="existsComunication"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+          </tr>
+        }
+
+        <tr class="info-user-box3">
+          <th colspan="8" class="TitleBox1">{{'Matriz.titleExterna' | translate}}</th>
+        </tr>
+        @for (form of internComunication; track $index) {
+          <tr [formGroup]="form" class="column-form">
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="public"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="caracters"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="influence"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="need"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="offer"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="languaje"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="messages"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="existsComunication"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+          </tr>
+        }
+
+        <tr class="info-user-box3">
+            <th colspan="8" class="TitleBox1">{{'Matriz.titleMarketing' | translate}}</th>
+        </tr>
+        @for (form of internComunication; track $index) {
+          <tr [formGroup]="form" class="column-form">
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="public"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="caracters"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="influence"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="need"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="offer"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="languaje"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="messages"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="existsComunication"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="5"
+                  ></textarea>
+              </mat-form-field>
+            </th>
+          </tr>
+        }
+      </table>
+    </div>
+
+    <div class="actionButtonsBox">
+      <button class="button-64" role="button"><span class="text">Descargar Matriz</span></button>
+    </div>
+  </div>
+
+</div>
