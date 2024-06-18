@@ -10,6 +10,21 @@
   </div>
 </div>
 
+@if ( matrizFinished ) {
+  <div class="container-buttons" >
+    <div class="actionButtonsBox" (click)="clearMatrizStakeholder()">
+      <button class="button-64" role="button">
+        <span class="text">Limpiar Matriz</span>
+      </button>
+    </div>
+    <div class="actionButtonsBox" (click)="downloadMatrizStakeholder()">
+      <button class="button-64" role="button">
+        <span class="text">Descargar Matriz</span>
+      </button>
+    </div>
+  </div>
+}
+
 <div id="totalMatrizData">
   <div class="content-data-matriz">
     <div class="container-table mb-4">
@@ -38,124 +53,8 @@
                   placeholder="{{'Matriz.titleComentary' | translate}}"
                   rows="3"
                 ></textarea>
-              </mat-form-field>
-            </th>
-
-            <th class="column-form">
-              <mat-form-field class="form-field-w" appearance="fill">
-                <textarea
-                  matInput
-                  type="text"
-                  formControlName="caracters"
-                  placeholder="{{'Matriz.titleComentary' | translate}}"
-                  rows="3"
-                ></textarea>
-              </mat-form-field>
-            </th>
-
-            <th class="column-form">
-              <mat-form-field class="form-field-w select-h" appearance="fill">
-                <mat-label> Selecciona </mat-label>
-                <mat-select formControlName="influence">
-                  @for (food of degreesPower; track food) {
-                    <mat-option [value]="food">{{ food }}</mat-option>
-                  }
-                </mat-select>
-              </mat-form-field>
-            </th>
-
-            <th class="column-form">
-              <mat-form-field class="form-field-w" appearance="fill">
-                <textarea
-                  matInput
-                  type="text"
-                  formControlName="need"
-                  placeholder="{{'Matriz.titleComentary' | translate}}"
-                  rows="3"
-                ></textarea>
-              </mat-form-field>
-            </th>
-
-            <th class="column-form">
-              <mat-form-field class="form-field-w" appearance="fill">
-                <textarea
-                  matInput
-                  type="text"
-                  formControlName="offer"
-                  placeholder="{{'Matriz.titleComentary' | translate}}"
-                  rows="3"
-                ></textarea>
-              </mat-form-field>
-            </th>
-
-            <th class="column-form">
-              <mat-form-field class="form-field-w" appearance="fill">
-                <textarea
-                  matInput
-                  type="text"
-                  formControlName="languaje"
-                  placeholder="{{'Matriz.titleComentary' | translate}}"
-                  rows="3"
-                ></textarea>
-              </mat-form-field>
-            </th>
-
-            <th class="column-form">
-              <mat-form-field class="form-field-w" appearance="fill">
-                <textarea
-                  matInput
-                  type="text"
-                  formControlName="messages"
-                  placeholder="{{'Matriz.titleComentary' | translate}}"
-                  rows="3"
-                ></textarea>
-              </mat-form-field>
-            </th>
-
-            <th class="column-form">
-              <mat-form-field class="form-field-w" appearance="fill">
-                <textarea
-                  matInput
-                  type="text"
-                  formControlName="existsComunication"
-                  placeholder="{{'Matriz.titleComentary' | translate}}"
-                  rows="3"
-                ></textarea>
-              </mat-form-field>
-            </th>
-
-            <td class="button-cell last-cell">
-              @if ( internComunication.length > 1 ) {
-                <button mat-mini-fab color="primary" (click)="deleteRow( $index, internComunication )">
-                  <mat-icon>remove</mat-icon>
-                </button>
-              }
-              @if ( $index === internComunication.length - 1 ) {
-                <button mat-mini-fab color="primary" (click)="addRow( this.internComunication )">
-                  <mat-icon>add</mat-icon>
-                </button>
-              }
-            </td>
-          </tr>
-        }
-
-
-        <tr class="info-user-box3">
-          <th colspan="8" class="TitleBox1">{{'Matriz.titleExterna' | translate}}</th>
-        </tr>
-        @for (form of externComunication; track $index) {
-          <tr [formGroup]="form" class="column-form">
-            <th class="column-form">
-              <mat-form-field class="form-field-w" appearance="fill">
-                <textarea
-                  matInput
-                  type="text"
-                  formControlName="public"
-                  placeholder="{{'Matriz.titleComentary' | translate}}"
-                  rows="3"
-                ></textarea>
                 <mat-error *ngIf="form.get('public')?.invalid && form.get('public')?.touched">
-                  Error: Campo requerido
+                  Campo requerido
                 </mat-error>
               </mat-form-field>
             </th>
@@ -169,6 +68,9 @@
                   placeholder="{{'Matriz.titleComentary' | translate}}"
                   rows="3"
                 ></textarea>
+                <mat-error *ngIf="form.get('caracters')?.invalid && form.get('caracters')?.touched">
+                  Campo requerido
+                </mat-error>
               </mat-form-field>
             </th>
 
@@ -180,6 +82,9 @@
                     <mat-option [value]="food">{{ food }}</mat-option>
                   }
                 </mat-select>
+                <mat-error *ngIf="form.get('influence')?.invalid && form.get('influence')?.touched">
+                  Campo requerido
+                </mat-error>
               </mat-form-field>
             </th>
 
@@ -192,6 +97,9 @@
                   placeholder="{{'Matriz.titleComentary' | translate}}"
                   rows="3"
                 ></textarea>
+                <mat-error *ngIf="form.get('need')?.invalid && form.get('need')?.touched">
+                  Campo requerido
+                </mat-error>
               </mat-form-field>
             </th>
 
@@ -204,6 +112,9 @@
                   placeholder="{{'Matriz.titleComentary' | translate}}"
                   rows="3"
                 ></textarea>
+                <mat-error *ngIf="form.get('offer')?.invalid && form.get('offer')?.touched">
+                  Campo requerido
+                </mat-error>
               </mat-form-field>
             </th>
 
@@ -216,6 +127,9 @@
                   placeholder="{{'Matriz.titleComentary' | translate}}"
                   rows="3"
                 ></textarea>
+                <mat-error *ngIf="form.get('languaje')?.invalid && form.get('languaje')?.touched">
+                  Campo requerido
+                </mat-error>
               </mat-form-field>
             </th>
 
@@ -228,6 +142,9 @@
                   placeholder="{{'Matriz.titleComentary' | translate}}"
                   rows="3"
                 ></textarea>
+                <mat-error *ngIf="form.get('messages')?.invalid && form.get('messages')?.touched">
+                  Campo requerido
+                </mat-error>
               </mat-form-field>
             </th>
 
@@ -240,29 +157,36 @@
                   placeholder="{{'Matriz.titleComentary' | translate}}"
                   rows="3"
                 ></textarea>
+                <mat-error *ngIf="form.get('existsComunication')?.invalid && form.get('existsComunication')?.touched">
+                  Campo requerido
+                </mat-error>
               </mat-form-field>
             </th>
 
-            <td class="button-cell" >
-              @if ( externComunication.length > 1 ) {
-                <button mat-mini-fab color="primary" (click)="deleteRow($index, externComunication)">
-                  <mat-icon>remove</mat-icon>
-                </button>
-              }
-              @if ( $index === externComunication.length - 1 ) {
-                <button mat-mini-fab color="primary" (click)="addRow(this.externComunication)">
-                  <mat-icon>add</mat-icon>
-                </button>
-              }
-            </td>
+            @if ( !matrizFinished ) {
+              <td class="button-cell last-cell" *ngIf="!matrizFinished">
+                @if ( internComunication.length > 1 ) {
+                  <button mat-mini-fab color="primary" (click)="deleteRow( $index, internComunication )">
+                    <mat-icon>remove</mat-icon>
+                  </button>
+                }
+                @if ( $index === internComunication.length - 1 ) {
+                  <button mat-mini-fab color="primary" (click)="addRow( this.internComunication )">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                }
+              </td>
+            }
+
           </tr>
         }
 
+
         <tr class="info-user-box3">
-            <th colspan="8" class="TitleBox1">{{'Matriz.titleMarketing' | translate}}</th>
+          <th colspan="8" class="TitleBox1">{{'Matriz.titleExterna' | translate}}</th>
         </tr>
-        @for (form of marketingComunication; track $index) {
-          <tr [formGroup]="form" class="column-form">
+        @for (form of externComunication; track $index) {
+          <tr [formGroup]="form">
             <th class="column-form">
               <mat-form-field class="form-field-w" appearance="fill">
                 <textarea
@@ -272,6 +196,9 @@
                   placeholder="{{'Matriz.titleComentary' | translate}}"
                   rows="3"
                 ></textarea>
+                <mat-error *ngIf="form.get('public')?.invalid && form.get('public')?.touched">
+                  Campo requerido
+                </mat-error>
               </mat-form-field>
             </th>
 
@@ -284,6 +211,9 @@
                   placeholder="{{'Matriz.titleComentary' | translate}}"
                   rows="3"
                 ></textarea>
+                <mat-error *ngIf="form.get('caracters')?.invalid && form.get('caracters')?.touched">
+                  Campo requerido
+                </mat-error>
               </mat-form-field>
             </th>
 
@@ -295,6 +225,9 @@
                     <mat-option [value]="food">{{ food }}</mat-option>
                   }
                 </mat-select>
+                <mat-error *ngIf="form.get('influence')?.invalid && form.get('influence')?.touched">
+                  Campo requerido
+                </mat-error>
               </mat-form-field>
             </th>
 
@@ -307,6 +240,9 @@
                   placeholder="{{'Matriz.titleComentary' | translate}}"
                   rows="3"
                 ></textarea>
+                <mat-error *ngIf="form.get('need')?.invalid && form.get('need')?.touched">
+                  Campo requerido
+                </mat-error>
               </mat-form-field>
             </th>
 
@@ -319,6 +255,9 @@
                   placeholder="{{'Matriz.titleComentary' | translate}}"
                   rows="3"
                 ></textarea>
+                <mat-error *ngIf="form.get('offer')?.invalid && form.get('offer')?.touched">
+                  Campo requerido
+                </mat-error>
               </mat-form-field>
             </th>
 
@@ -331,6 +270,9 @@
                   placeholder="{{'Matriz.titleComentary' | translate}}"
                   rows="3"
                 ></textarea>
+                <mat-error *ngIf="form.get('languaje')?.invalid && form.get('languaje')?.touched">
+                  Campo requerido
+                </mat-error>
               </mat-form-field>
             </th>
 
@@ -343,6 +285,9 @@
                   placeholder="{{'Matriz.titleComentary' | translate}}"
                   rows="3"
                 ></textarea>
+                <mat-error *ngIf="form.get('messages')?.invalid && form.get('messages')?.touched">
+                  Campo requerido
+                </mat-error>
               </mat-form-field>
             </th>
 
@@ -355,29 +300,182 @@
                   placeholder="{{'Matriz.titleComentary' | translate}}"
                   rows="3"
                 ></textarea>
+                <mat-error *ngIf="form.get('existsComunication')?.invalid && form.get('existsComunication')?.touched">
+                  Campo requerido
+                </mat-error>
               </mat-form-field>
             </th>
 
-            <td class="button-cell" >
-              @if ( marketingComunication.length > 1 ) {
-                <button mat-mini-fab color="primary" (click)="deleteRow($index, marketingComunication)">
-                  <mat-icon>remove</mat-icon>
-                </button>
-              }
-              @if ( $index === marketingComunication.length - 1 ) {
-                <button mat-mini-fab color="primary" (click)="addRow(this.marketingComunication)">
-                  <mat-icon>add</mat-icon>
-                </button>
-              }
-            </td>
+            @if ( !matrizFinished ) {
+              <td class="button-cell last-cell" *ngIf="!matrizFinished">
+                @if ( externComunication.length > 1 ) {
+                  <button mat-mini-fab color="primary" (click)="deleteRow( $index, externComunication )">
+                    <mat-icon>remove</mat-icon>
+                  </button>
+                }
+                @if ( $index === externComunication.length - 1 ) {
+                  <button mat-mini-fab color="primary" (click)="addRow( this.externComunication )">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                }
+              </td>
+            }
+
+          </tr>
+        }
+
+        <tr class="info-user-box3">
+            <th colspan="8" class="TitleBox1">{{'Matriz.titleMarketing' | translate}}</th>
+        </tr>
+        @for (form of marketingComunication; track $index) {
+          <tr [formGroup]="form">
+            <th class="column-form">
+              <mat-form-field class="form-field-w" appearance="fill">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="public"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="3"
+                ></textarea>
+                <mat-error *ngIf="form.get('public')?.invalid && form.get('public')?.touched">
+                  Campo requerido
+                </mat-error>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w" appearance="fill">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="caracters"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="3"
+                ></textarea>
+                <mat-error *ngIf="form.get('caracters')?.invalid && form.get('caracters')?.touched">
+                  Campo requerido
+                </mat-error>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w select-h" appearance="fill">
+                <mat-label> Selecciona </mat-label>
+                <mat-select formControlName="influence">
+                  @for (food of degreesPower; track food) {
+                    <mat-option [value]="food">{{ food }}</mat-option>
+                  }
+                </mat-select>
+                <mat-error *ngIf="form.get('influence')?.invalid && form.get('influence')?.touched">
+                  Campo requerido
+                </mat-error>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w" appearance="fill">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="need"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="3"
+                ></textarea>
+                <mat-error *ngIf="form.get('need')?.invalid && form.get('need')?.touched">
+                  Campo requerido
+                </mat-error>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w" appearance="fill">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="offer"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="3"
+                ></textarea>
+                <mat-error *ngIf="form.get('offer')?.invalid && form.get('offer')?.touched">
+                  Campo requerido
+                </mat-error>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w" appearance="fill">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="languaje"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="3"
+                ></textarea>
+                <mat-error *ngIf="form.get('languaje')?.invalid && form.get('languaje')?.touched">
+                  Campo requerido
+                </mat-error>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w" appearance="fill">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="messages"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="3"
+                ></textarea>
+                <mat-error *ngIf="form.get('messages')?.invalid && form.get('messages')?.touched">
+                  Campo requerido
+                </mat-error>
+              </mat-form-field>
+            </th>
+
+            <th class="column-form">
+              <mat-form-field class="form-field-w" appearance="fill">
+                <textarea
+                  matInput
+                  type="text"
+                  formControlName="existsComunication"
+                  placeholder="{{'Matriz.titleComentary' | translate}}"
+                  rows="3"
+                ></textarea>
+                <mat-error *ngIf="form.get('existsComunication')?.invalid && form.get('existsComunication')?.touched">
+                  Campo requerido
+                </mat-error>
+              </mat-form-field>
+            </th>
+
+            @if ( !matrizFinished ) {
+              <td class="button-cell last-cell">
+                @if ( marketingComunication.length > 1 ) {
+                  <button mat-mini-fab color="primary" (click)="deleteRow( $index, marketingComunication )">
+                    <mat-icon>remove</mat-icon>
+                  </button>
+                }
+                @if ( $index === marketingComunication.length - 1 ) {
+                  <button mat-mini-fab color="primary" (click)="addRow( this.marketingComunication )">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                }
+              </td>
+            }
+
           </tr>
         }
       </table>
     </div>
 
-    <div class="actionButtonsBox" (click)="saveValuesForms()">
-      <button class="button-64" role="button"><span class="text">Descargar Matriz</span></button>
-    </div>
+    @if ( !matrizFinished ) {
+      <div class="container-button-save">
+        <div class="actionButtonsBox" (click)="saveValuesForms()">
+          <button class="button-64" role="button"><span class="text">Guardar Matriz</span></button>
+        </div>
+      </div>
+    }
+
   </div>
 
 </div>

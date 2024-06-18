@@ -1,10 +1,10 @@
-export interface matriz {
-  internComunication: row[][];
-  externComunication: row[][];
-  Marketing: row[][];
+export interface MatrizStakeHolder {
+  internComunication: MatrizRow[];
+  externComunication: MatrizRow[];
+  Marketing: MatrizRow[];
 }
 
-export interface row {
+export interface MatrizRow {
   public: string;
   caracters: string;
   influence: string;
