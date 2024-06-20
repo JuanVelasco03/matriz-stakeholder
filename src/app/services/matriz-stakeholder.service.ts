@@ -3,6 +3,7 @@ import { MatrizRow, MatrizStakeHolder } from '../interfaces/matriz.interface';
 
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { headerBase64 } from './headerPdf';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -78,13 +79,17 @@ export class MatrizStakeholderService {
 
     const documentDefinition: any = {
       pageMargins: [20, 10, 20, 10],
+      header: {
+        margin: [0, 0, 0, 50],
+        columns: [{ image: headerBase64, width: 600, heigth: 400, margin: [0, 0, 0, 100]}]
+      },
       pageOrientation: 'landscape', // Orientación horizontal
       content: table,
       styles: {
         title: {
           alignment: 'center',
           color: '#282a70',
-          margin: [0, 0, 0, 10],
+          margin: [0, 35, 0, 10],
           bold: true,
           fontSize: 24,
         },

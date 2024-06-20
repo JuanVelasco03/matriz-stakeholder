@@ -2,7 +2,8 @@
   "Matriz": {
     "title1": "Matriz de stakeholders",
     "subtitle": "Objetivo",
-    "descripcion": "Apreciado estudiante bienvenido al aplicativo stakeholders, puede emplear esta herramienta como ayuda para construir o mapear su plan estratégico. \n Al finalizar oprima el botón guardar y espere a que se descargue el archivo. Cuidado, si cierra el navegador y no almacena sus cambios perderá la información diligenciada.",
+    "descripcion": "Apreciado estudiante bienvenido al aplicativo stakeholders, puede emplear esta herramienta como ayuda para construir o mapear su plan estratégico.",
+    "descripcion2": "Al finalizar oprima el botón guardar y espere a que se descargue el archivo. Cuidado, si cierra el navegador y no almacena sus cambios perderá la información diligenciada.",
     "tabletTile1": "Público",
     "tabletTile2": "Características",
     "tabletTile3": "Grado de poder e influencia (Alta, Media, Baja)",

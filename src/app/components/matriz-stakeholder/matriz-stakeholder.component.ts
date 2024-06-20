@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatrizRow } from '../../interfaces/matriz.interface';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -12,7 +12,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import Swal from 'sweetalert2';
 
 import { MatrizStakeholderService } from '../../services/matriz-stakeholder.service';
-
 
 @Component({
   selector: 'app-matriz-stakeholder',
@@ -44,6 +43,38 @@ export class MatrizStakeholderComponent implements OnInit {
   ngOnInit(): void {
     this.initRowForms()
     this.getDataMatrizStakeholder();
+    window.addEventListener('beforeunload', this.beforeUnloadHandler);
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  beforeUnloadHandler(event: BeforeUnloadEvent) {
+    if ( !this.canClose() ) {
+      event.preventDefault(); // Algunos navegadores requieren esto
+      event.returnValue = '¿Estás seguro de que deseas salir?'; // Esto es necesario para la compatibilidad
+      return '¿Estás seguro de que deseas salir?'; // A veces es necesario devolver el string directamente
+    }
+    return '¿Estás seguro de que deseas salir?'; // A veces es necesario devolver el string directamente
+  }
+
+  canClose(): boolean {
+
+    if( this.matrizFinished ) return true;
+
+    const arrFormValidate = [...this.internComunication, ...this.externComunication, ...this.marketingComunication]
+
+    let result = true;
+
+    // Iteramos sobre cada formulario en internComunication
+    arrFormValidate.forEach((form) => {
+      const formEntries = Object.entries(form.value);
+      // Verificamos si algún campo en el formulario actual no está vacío
+      const nonEmptyField = formEntries.some(([key, value]) => value !== '');
+      if ( nonEmptyField ) {
+        result = false; // Si encontramos un campo no vacío, actualizamos result a false
+      }
+    });
+
+    return result;
   }
 
   initRowForms(){
@@ -148,22 +179,37 @@ export class MatrizStakeholderComponent implements OnInit {
 
     if(!validForms) return this.showAlertEmptyForm();
 
-    const resSaveMatriz = this.matrizStakeholderService.saveDataMatrizStakeholder({ internComunication, externComunication, Marketing });
+    Swal.fire({
+      title: '¿Estás seguro de que deseas guardar la información?',
+      text: 'Una vez guardada, no podrás modificar la información.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, guardar',
+      cancelButtonText: 'Cancelar',
+      didOpen: () => {
+        document.body.style.overflowY = 'auto';
+      },
 
-    if( resSaveMatriz ){
-      this.matrizFinished = true;
-      Swal.fire({
-        title: 'Matriz guardada!',
-        text: 'La matriz ha sido guardada correctamente.',
-        icon: 'success',
-        didOpen: () => {
-          document.body.style.overflowY= 'auto';
+    }).then((result) => {
+      if(result.isConfirmed){
+        const resSaveMedia = this.matrizStakeholderService.saveDataMatrizStakeholder({ internComunication, externComunication, Marketing });
+        if( resSaveMedia ){
+          this.matrizFinished = true;
+          Swal.fire({
+            title: 'Información guardada!',
+            text: 'La información ha sido guardada correctamente.',
+            icon: 'success',
+            didOpen: () => {
+              document.body.style.overflowY= 'auto';
+            }
+          })
+          this.matrizStakeholderService.generatePdf();
+          this.getDataMatrizStakeholder();
         }
-      })
-      this.matrizStakeholderService.generatePdf();
-      this.getDataMatrizStakeholder();
-    }
-
+      }
+    })
   }
 
   validateForms(formValidate: FormGroup[]): boolean {

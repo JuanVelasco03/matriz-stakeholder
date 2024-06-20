@@ -2,11 +2,17 @@
   <div class="mainTitlePanel">
     <h1>{{'Matriz.title1' | translate }}</h1>
   </div>
-  <!-- <div class="mainTitlePanel">
+  <div class="mainSubtitlePanel">
     <h3>{{'Matriz.subtitle' | translate }}</h3>
-  </div> -->
+  </div>
   <div class="description">
-    <div><label> <p>{{'Matriz.descripcion' | translate }}</p></label></div>
+    <div>
+      <p>{{'Matriz.descripcion' | translate }}</p>
+    </div>
+
+    <div>
+      <p>{{'Matriz.descripcion2' | translate }}</p>
+    </div>
   </div>
 </div>
 
@@ -164,7 +170,7 @@
             </th>
 
             @if ( !matrizFinished ) {
-              <td class="button-cell last-cell" *ngIf="!matrizFinished">
+              <td class="button-cell last-cell">
                 @if ( internComunication.length > 1 ) {
                   <button mat-mini-fab color="primary" (click)="deleteRow( $index, internComunication )">
                     <mat-icon>remove</mat-icon>
@@ -307,7 +313,7 @@
             </th>
 
             @if ( !matrizFinished ) {
-              <td class="button-cell last-cell" *ngIf="!matrizFinished">
+              <td class="button-cell last-cell">
                 @if ( externComunication.length > 1 ) {
                   <button mat-mini-fab color="primary" (click)="deleteRow( $index, externComunication )">
                     <mat-icon>remove</mat-icon>

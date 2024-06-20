@@ -2,11 +2,23 @@
   height: 100%;
 }
 
-.mainTitlePanel h1{
-  margin-top: 32px;
+.mainTitlePanel h1 {
+  margin-top: 16px;
   text-align: center;
   width: 100%;
   font-size: 35px;
+  font-weight: 700;
+  background: -webkit-linear-gradient(257deg, #e3e13a, #1aedec);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.mainSubtitlePanel h3 {
+  height: 35px;
+  margin-top: 16px;
+  text-align: center;
+  width: 100%;
+  font-size: 28px;
   font-weight: 700;
   background: -webkit-linear-gradient(257deg, #e3e13a, #1aedec);
   -webkit-background-clip: text;
@@ -18,7 +30,7 @@
   color: white;
   text-align: center;
   margin: 0 auto;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
   font-size: 19px;
 }
 
@@ -96,6 +108,11 @@ th.column-form {
   height: 100%;
   display: flex;
   align-items: stretch;
+}
+
+.TitleBox1 {
+  font-size: 1.4em;
+  text-align: center;
 }
 
 .select-h{
