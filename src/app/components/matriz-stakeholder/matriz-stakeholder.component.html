@@ -1,35 +1,17 @@
-<div>
+<div class="content-header">
   <div class="mainTitlePanel">
-    <h1>{{'Matriz.title1' | translate }}</h1>
+    <h1>{{ 'Matriz.title1' | translate | uppercase }}</h1>
+    <h1>{{ 'Matriz.title2' | translate | uppercase }}</h1>
   </div>
   <div class="mainSubtitlePanel">
-    <h3>{{'Matriz.subtitle' | translate }}</h3>
+    <h3>{{ 'Matriz.subtitle' | translate | uppercase }}</h3>
+    <ul>
+      <li> <p>{{ 'Matriz.descripcion' | translate }}</p> </li>
+      <li> <p>{{ 'Matriz.descripcion2' | translate }}</p> </li>
+    </ul>
   </div>
-  <div class="description">
-    <div>
-      <p>{{'Matriz.descripcion' | translate }}</p>
-    </div>
-
-    <div>
-      <p>{{'Matriz.descripcion2' | translate }}</p>
-    </div>
-  </div>
+  <img src="assets/images/char.png" alt="">
 </div>
-
-@if ( matrizFinished ) {
-  <div class="container-buttons" >
-    <div class="actionButtonsBox" (click)="clearMatrizStakeholder()">
-      <button class="button-64" role="button">
-        <span class="text">Limpiar Matriz</span>
-      </button>
-    </div>
-    <div class="actionButtonsBox" (click)="downloadMatrizStakeholder()">
-      <button class="button-64" role="button">
-        <span class="text">Descargar Matriz</span>
-      </button>
-    </div>
-  </div>
-}
 
 <div id="totalMatrizData">
   <div class="content-data-matriz">
@@ -172,12 +154,15 @@
             @if ( !matrizFinished ) {
               <td class="button-cell last-cell">
                 @if ( internComunication.length > 1 ) {
-                  <button mat-mini-fab color="primary" (click)="deleteRow( $index, internComunication )">
+                  <button mat-mini-fab color="primary" (click)="deleteRow( $index, internComunication )"
+                  matTooltip="Eliminar fila">
                     <mat-icon>remove</mat-icon>
                   </button>
                 }
                 @if ( $index === internComunication.length - 1 ) {
-                  <button mat-mini-fab color="primary" (click)="addRow( this.internComunication )">
+                  <button mat-mini-fab color="primary" (click)="addRow( this.internComunication )"
+                  matTooltip="Agregar fila"
+                  matTooltipPosition="above">
                     <mat-icon>add</mat-icon>
                   </button>
                 }
@@ -315,12 +300,15 @@
             @if ( !matrizFinished ) {
               <td class="button-cell last-cell">
                 @if ( externComunication.length > 1 ) {
-                  <button mat-mini-fab color="primary" (click)="deleteRow( $index, externComunication )">
+                  <button mat-mini-fab color="primary" (click)="deleteRow( $index, externComunication )"
+                  matTooltip="Eliminar fila">
                     <mat-icon>remove</mat-icon>
                   </button>
                 }
                 @if ( $index === externComunication.length - 1 ) {
-                  <button mat-mini-fab color="primary" (click)="addRow( this.externComunication )">
+                  <button mat-mini-fab color="primary" (click)="addRow( this.externComunication )"
+                  matTooltip="Agregar fila"
+                  matTooltipPosition="above">
                     <mat-icon>add</mat-icon>
                   </button>
                 }
@@ -457,12 +445,16 @@
             @if ( !matrizFinished ) {
               <td class="button-cell last-cell">
                 @if ( marketingComunication.length > 1 ) {
-                  <button mat-mini-fab color="primary" (click)="deleteRow( $index, marketingComunication )">
+                  <button mat-mini-fab color="primary" (click)="deleteRow( $index, marketingComunication )"
+                  matTooltip="You cannot delete that"
+                  matTooltip="Eliminar fila">
                     <mat-icon>remove</mat-icon>
                   </button>
                 }
                 @if ( $index === marketingComunication.length - 1 ) {
-                  <button mat-mini-fab color="primary" (click)="addRow( this.marketingComunication )">
+                  <button mat-mini-fab color="primary" (click)="addRow( this.marketingComunication )"
+                  matTooltip="Agregar fila"
+                  matTooltipPosition="above">
                     <mat-icon>add</mat-icon>
                   </button>
                 }
@@ -478,6 +470,21 @@
       <div class="container-button-save">
         <div class="actionButtonsBox" (click)="saveValuesForms()">
           <button class="button-64" role="button"><span class="text">Guardar Matriz</span></button>
+        </div>
+      </div>
+    }
+
+    @if ( matrizFinished ) {
+      <div class="container-buttons" >
+        <div class="actionButtonsBox" (click)="clearMatrizStakeholder()">
+          <button class="button-64" role="button">
+            <span class="text">Limpiar Matriz</span>
+          </button>
+        </div>
+        <div class="actionButtonsBox" (click)="downloadMatrizStakeholder()">
+          <button class="button-64" role="button">
+            <span class="text">Descargar Matriz</span>
+          </button>
         </div>
       </div>
     }

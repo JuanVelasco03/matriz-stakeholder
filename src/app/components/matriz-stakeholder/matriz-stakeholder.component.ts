@@ -1,4 +1,4 @@
-import { Component, HostListener, inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, inject, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatrizRow } from '../../interfaces/matriz.interface';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { MatExpansionModule } from '@angular/material/expansion';
 import Swal from 'sweetalert2';
@@ -16,11 +17,11 @@ import { MatrizStakeholderService } from '../../services/matriz-stakeholder.serv
 @Component({
   selector: 'app-matriz-stakeholder',
   standalone: true,
-  imports: [ TranslateModule, ReactiveFormsModule, MatInputModule, CommonModule, MatIconModule, MatButtonModule, MatExpansionModule, MatSelectModule],
+  imports: [ TranslateModule, MatTooltipModule, ReactiveFormsModule, MatInputModule, CommonModule, MatIconModule, MatButtonModule, MatExpansionModule, MatSelectModule],
   templateUrl: './matriz-stakeholder.component.html',
   styleUrl: './matriz-stakeholder.component.css'
 })
-export class MatrizStakeholderComponent implements OnInit {
+export class MatrizStakeholderComponent implements OnInit, AfterViewInit{
 
   fb = inject(FormBuilder);
 
@@ -44,6 +45,21 @@ export class MatrizStakeholderComponent implements OnInit {
     this.initRowForms()
     this.getDataMatrizStakeholder();
     window.addEventListener('beforeunload', this.beforeUnloadHandler);
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      if( !this.matrizFinished ) this.cleanupHandler();
+    }, 100)
+  }
+
+  cleanupHandler() {
+    const formElements = document.querySelectorAll('textarea');
+    formElements.forEach((element) => {
+      if (element instanceof HTMLTextAreaElement) {
+        element.value = '';
+      }
+    });
   }
 
   @HostListener('window:beforeunload', ['$event'])
@@ -199,7 +215,7 @@ export class MatrizStakeholderComponent implements OnInit {
           this.matrizFinished = true;
           Swal.fire({
             title: 'Información guardada!',
-            text: 'La información ha sido guardada correctamente.',
+            text: 'La matriz se ha descargado en su equipo.',
             icon: 'success',
             didOpen: () => {
               document.body.style.overflowY= 'auto';
@@ -238,7 +254,7 @@ export class MatrizStakeholderComponent implements OnInit {
   clearMatrizStakeholder(){
     Swal.fire({
       title: '¿Estás seguro que deseas limpiar la matriz?',
-      text: "Esta acción no se puede deshacer.",
+      text: "Con esta acción se eliminará toda la información guardada.",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
